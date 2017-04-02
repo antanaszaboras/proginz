@@ -13,8 +13,11 @@ spl_autoload_register(function ($class_name) {
 $newsletter = new Newsletter();
 $newsletter->setId(1);
 $newsletter->setDate('2017-01-01');
+$newsletter->setCategory(1);
 $newsletter->setDescription('Newspeipis');
 $newsletter->setBody("blasf anf asfabshfbhasf bhasf ");
+$newsletter->insertItemToDB();
+
 
 //set variables
 
@@ -35,8 +38,6 @@ $newsletter->setBody("blasf anf asfabshfbhasf bhasf ");
            printAllNewsletters();
         break;
     endswitch;
-    
-        $newsletter->printItem();
     ?>
 </body>
 </html>

@@ -30,7 +30,15 @@ class Newsletter {
     public function setDate($value){ $this->date = $value; }
     public function setCategory($value){ $this->category = $value; }
     public function setDescription($value){ $this->description = $value; }
-    public function setBody($value){ $body = $this->value; }
+    public function setBody($value){ $this->body = $value; }
+    
+    public function setItem($id, $date, $category, $description, $body){
+        $this->id = $id;
+        $this->date = $date;
+        $this->category = $category;
+        $this->description = $description;
+        $this->body = $body;
+    }
     
     public function printItem(){
         echo $this->id . ' ' . $this->date . ' ' . $this->category . ' ' . $this->description . ' ' . $this->body;
@@ -40,4 +48,10 @@ class Newsletter {
         
     }
     
+    public function insertItemToDB(){
+        $con = Configuration::dbConnect();
+        mysqli_query($con, "INSERT INTO newsletters (state, date, category, description, body) VALUES ('1','$this->date','$this->category','$this->description','$this->body')") or die(mysqli_error($con));
+        Configuration::dbDisconnect($con);
+        
+    }
 }

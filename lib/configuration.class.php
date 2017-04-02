@@ -12,8 +12,16 @@
  * @author antan
  */
 class Configuration {
-    static $DB_SERVER   = 'localhost';
-    static $DB_NAME     = 'root';
-    static $DB_USERNAME = '';
-    static $DB_PASSWORD = 'localhost';
+    public static $DB_SERVER   = 'localhost';
+    public static $DB_NAME     = 'newsletters';
+    public static $DB_USERNAME = 'root';
+    public static $DB_PASSWORD = '';
+    
+    static function dbConnect(){
+       return mysqli_connect(Configuration::$DB_SERVER, Configuration::$DB_USERNAME, Configuration::$DB_PASSWORD, Configuration::$DB_NAME);
+    }
+    
+    static function dbDisconnect($con){
+        mysqli_close($con);
+    }
 }

@@ -14,12 +14,14 @@
 class Newsletter {
     //put your code here
     private $id;
+    private $name;
     private $date;
     private $category;
     private $description;
     private $body;
     
     public function getId(){ return $this->id; }
+    public function getName(){ return $this->name; }
     public function getDate(){ return $this->date; }
     public function getCategory(){ return $this->category; }
     public function getDescription(){ return $this->description; }
@@ -27,6 +29,7 @@ class Newsletter {
 
     
     public function setId($value){ $this->id = $value; }
+    public function setName($value){ $this->name = $value; }
     public function setDate($value){ $this->date = $value; }
     public function setCategory($value){ $this->category = $value; }
     public function setDescription($value){ $this->description = $value; }
@@ -50,7 +53,7 @@ class Newsletter {
     
     public function insertItemToDB(){
         $con = Configuration::dbConnect();
-        mysqli_query($con, "INSERT INTO newsletters (state, date, category, description, body) VALUES ('1','$this->date','$this->category','$this->description','$this->body')") or die(mysqli_error($con));
+        mysqli_query($con, "INSERT INTO newsletter (state, date, category, description, body) VALUES ('1','$this->date','$this->category','$this->description','$this->body')") or die(mysqli_error($con));
         Configuration::dbDisconnect($con);
         
     }

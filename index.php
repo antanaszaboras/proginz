@@ -9,17 +9,10 @@ require_once 'lib/functions.php';
 spl_autoload_register(function ($class_name) {
     require_once 'lib/' . $class_name . '.class.php';
 });
-
-$newsletter = new Newsletter();
-$newsletter->setId(1);
-$newsletter->setDate('2017-01-01');
-$newsletter->setCategory(1);
-$newsletter->setDescription('Newspeipis');
-$newsletter->setBody("blasf anf asfabshfbhasf bhasf ");
-//$newsletter->insertItemToDB();
-
-
-//set variables
+/*
+$newsletter = new Newsletter(array("name"=>"Kodėlčiukas"));
+$newsletter->printItem();
+*/
 
 ?>
 
@@ -43,7 +36,7 @@ $newsletter->setBody("blasf anf asfabshfbhasf bhasf ");
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="?view=newsletter-list">Newsletters</a></li>
-      <li onclick="showSignupForm();"> SIGN UP</li>
+      <li class="button" onclick="showSignupForm();"><a>SIGN UP</a></li>
       <li><a href="?view=admin-site" onclick="showAdminForm()">ADMIN</a></li>
     </ul>
   </div>
@@ -64,8 +57,8 @@ $newsletter->setBody("blasf anf asfabshfbhasf bhasf ");
             <h2></h2><em class="erroras" style="color:red;display:none;">Please fill all fields.</em>
             <form class="foxform" id="personaldata" method="GET">
                 <div class="close-button"><span onclick="removeGuestFormOverlay();">×</span></div>
-                <div><input placeholder="El. pašto adresas arba telefonas" title="El. pašto adresas arba telefonas" style="display:block;float:none;margin:0 auto 15px !important;border:1px solid #b0b0b0;color: gray;" name="email" type="text"></div>
-                <div><button class="btn red" type="submit"><span>Siųsti</span><i class="fa fa-angle-right fa-lg fa-inverse"></i></button></div>
+                <div><input placeholder="El. pašto adresas" title="El. pašto adresas" style="display:block;float:none;margin:0 auto 15px !important;border:1px solid #b0b0b0;color: gray;" name="email" type="text"></div>
+                <div><button class="btn red" type="submit"><span>Send</span><i class="fa fa-angle-right fa-lg fa-inverse"></i></button></div>
                 <input type="hidden" name="location" value="zzz">        
             </form> 
         </div>  

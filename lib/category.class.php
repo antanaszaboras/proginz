@@ -15,7 +15,14 @@ class Category {
     //put your code here
     private $id;
     private $name;
-    
+    public function __construct($params = array())
+    {
+        $this->id = 0;
+        $this->name = '';
+        foreach ($params as $key => $value){
+            $this->$key = $value;
+        } 
+    }
     public function getId(){ return $id; }
     public function getName(){ return $name; }
     

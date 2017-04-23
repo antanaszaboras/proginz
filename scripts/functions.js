@@ -7,7 +7,14 @@
 function removeGuestFormOverlay(){
     document.getElementById('signup-form').style.display = "none";
 }
+function removeLoginFormOverlay(){
+    document.getElementById('adminlogin-form').style.display = "none";
+}
 
 function showSignupForm(){
     document.getElementById('signup-form').style.display = "block";
+}
+
+function showAdminLogin(){
+    document.getElementById('adminlogin-form').style.display = "block";
 }

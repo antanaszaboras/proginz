@@ -27,46 +27,40 @@ class Newsletter {
         $this->category = new Category();
         $this->description = '';
         $this->body = '';
-        foreach ($params as $key => $value){
-            $this->$key = $value;
+        if($params != NULL){
+            foreach ($params as $key => $value){
+                print_r($key . ' - ' . $value . '\n');
+                $this->$key = $value;
+            }
         }
         
     }
-    
-    public function getId(){ return $this->id; }
-    public function getName(){ return $this->name; }
-    public function getDate(){ return $this->date; }
-    public function getCategory(){ return $this->category; }
-    public function getDescription(){ return $this->description; }
-    public function getBody(){ return $this->body; }
-
-    public function setId($value){ $this->id = $value; }
-    public function setName($value){ $this->name = $value; }
-    public function setDate($value){ $this->date = $value; }
-    public function setCategory($value){ $this->category = $value; }
-    public function setDescription($value){ $this->description = $value; }
-    public function setBody($value){ $this->body = $value; }
-    
-    public function setItem($id, $date, $category, $description, $body){
-        $this->id = $id;
-        $this->date = $date;
-        $this->category = $category;
-        $this->description = $description;
-        $this->body = $body;
-    }
-    
-    public function printItem(){
-        echo $this->id . ' ' . $this->name . $this->date . ' ' . $this->category->getName() . ' ' . $this->description . ' ' . $this->body;
-    }
-    
-    public function getItemFromDB($itemId){
-        
-    }
-    
-    public function insertItemToDB(){
+  
+    public function addToDb(){
         $con = Configuration::dbConnect();
-        mysqli_query($con, "INSERT INTO newsletter (state, date, category, description, body) VALUES ('1','$this->date','$this->category','$this->description','$this->body')") or die(mysqli_error($con));
-        Configuration::dbDisconnect($con);
-        
+        $result = mysqli_query($con, "INSERT INTO newsletter  "
+                                        . " (date,name,description,category,body,state)  "
+                                        . " VALUES ('$this->date','$this->name','$this->description','$this->category','$this->body','3')"
+                    );
+        Configuration::dbDisconnect($con); 
+        if($result == true)
+            return true;
+        return false;
+    }
+    
+    function updateInDB($nlid){
+        $con = Configuration::dbConnect();
+        $result = mysqli_query($con, "UPDATE newsletter SET"
+                                        . " date = '$this->date', "
+                                        . " name = '$this->name', "
+                                        . " description = '$this->description', "
+                                        . " category = '$this->category', "
+                                        . " body = '$this->body' "
+                                        . " WHERE id= '$nlid'"
+                    );
+        Configuration::dbDisconnect($con); 
+        if($result == true)
+            return true;
+        return false;
     }
 }

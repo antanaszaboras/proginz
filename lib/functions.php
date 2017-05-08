@@ -233,32 +233,8 @@ function printNewsletterForm(){
     ;
     
 }
-function updateNewsletterInDB($nlid,$date,$name,$desc,$cat,$body){
-        $con = Configuration::dbConnect();
-        $result = mysqli_query($con, "UPDATE newsletter SET"
-                                    . " date = '$date', "
-                                    . " name = '$name', "
-                                    . " description = '$desc', "
-                                    . " category = '$cat', "
-                                    . " body = '$body' "
-                                    . " WHERE id= '$nlid'"
-                );
-    Configuration::dbDisconnect($con); 
-    if($result == true)
-        return true;
-    return false;
-}
-function insertNewsletterToDB($date,$name,$desc,$cat,$body){
-    $con = Configuration::dbConnect();
-    $result = mysqli_query($con, "INSERT INTO newsletter  "
-                                    . " (date,name,description,category,body,state)  "
-                                    . " VALUES ('$date','$name','$desc','$cat','$body','3')"
-                );
-    Configuration::dbDisconnect($con); 
-    if($result == true)
-        return true;
-    return false;
-}        
+
+
 function getCategorySelection($id){
     $selection = '';
      $con = Configuration::dbConnect();

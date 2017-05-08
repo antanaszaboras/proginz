@@ -35,8 +35,9 @@ if(isset($_POST['login'])){
 }
 
 if(isset($_POST['edit-newsletter-submit'])){
+    $newsletter = new Newsletter(array('date' => $_POST['date'],'name' => $_POST['name'],'description' => $_POST['desc'],'category' => $_POST['cat'],'body' => $_POST['body']));
     if($_POST['nlid'] > 0){
-        if(updateNewsletterInDB($_POST['nlid'],$_POST['date'],$_POST['name'],$_POST['desc'],$_POST['cat'],$_POST['body'])){
+        if($newsletter->updateInDB($_POST['nlid'])){
             header('Location: ../adminsite.php?view=newsletters&msg=success-updating-newsletter');
         }else{
             echo '<script type="text/javascript">alert("KLAIDA !"); history.go(-1)</script>';
@@ -44,10 +45,10 @@ if(isset($_POST['edit-newsletter-submit'])){
         
     }
     if($_POST['nlid'] == 0){
-        if(insertNewsletterToDB($_POST['date'],$_POST['name'],$_POST['desc'],$_POST['cat'],$_POST['body'])){
+        if($newsletter->AddToDB()){
             header('Location: ../adminsite.php?view=newsletters&msg=success-inserting-newsletter');
         }else{
-            echo '<script type="text/javascript">alert("KLAIDA !"); history.go(-1)</script>';
+           echo '<script type="text/javascript">alert("KLAIDA !"); history.go(-1)</script>';
         }
     }
 }

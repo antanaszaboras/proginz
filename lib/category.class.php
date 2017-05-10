@@ -15,17 +15,39 @@ class Category {
     //put your code here
     private $id;
     private $name;
+    
     public function __construct($params = array())
     {
         $this->id = 0;
         $this->name = '';
-        foreach ($params as $key => $value){
-            $this->$key = $value;
-        } 
+        if($params != NULL){
+            foreach ($params as $key => $value){
+                $this->$key = $value;
+            }
+        }
     }
-    public function getId(){ return $id; }
-    public function getName(){ return $name; }
+  
+    public function addToDb(){
+        $con = Configuration::dbConnect();
+        $result = mysqli_query($con, "INSERT INTO category  "
+                                        . " (name,state)  "
+                                        . " VALUES ('$this->name','1')"
+                    );
+        Configuration::dbDisconnect($con); 
+        if($result == true)
+            return true;
+        return false;
+    }
     
-    public function setId($value){ $id = $value; }
-    public function setName($value){ $name = $value; }
+    function updateInDB($categoryId){
+        $con = Configuration::dbConnect();
+        $result = mysqli_query($con, "UPDATE category SET"
+                                        . " name = '$this->name' "
+                                        . " WHERE id = '$categoryId'"
+                    );
+        Configuration::dbDisconnect($con); 
+        if($result == true)
+            return true;
+        return false;
+    }
 }

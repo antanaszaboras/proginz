@@ -18,6 +18,12 @@ class Configuration {
     public static $DB_PASSWORD = '';
     public static $ADMIN_PASSWORD = 'admin';
     public static $BOOL_VISUAL = ['3' => 'READY', '2' => 'SENT', '-1' => 'DELETED', '1' => 'ACTIVE', '0' => 'DISABLED'];
+    public static $MAIL_ADDRESS_FROM = 'proginz2017@gmail.com';
+    public static $MAIL_HOST = 'smtp.gmail.com';
+    public static $MAIL_USERNAME = 'proginz2017@gmail.com';
+    public static $MAIL_PASSWORD = 'CommonPassword';
+    public static $MAIL_ENCRYPTION = 'ssl';
+    public static $MAIL_PORT = '465';
     
     static function dbConnect(){
        return mysqli_connect(Configuration::$DB_SERVER, Configuration::$DB_USERNAME, Configuration::$DB_PASSWORD, Configuration::$DB_NAME);
@@ -26,4 +32,5 @@ class Configuration {
     static function dbDisconnect($con){
         mysqli_close($con);
     }
+    
 }

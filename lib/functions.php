@@ -1,5 +1,5 @@
 <?php
-
+//require_once 'C:\wamp\www\proginz\plugins\PHPMailer\PHPMailerAutoload.php';
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -56,7 +56,6 @@ function categoryChekboxOptions(){
 }
 
 function addSubscription($email, $categories){
-    print_r($categories);
     if(!empty($subscriberId = addSubscriber($email)))
     {
         $con = Configuration::dbConnect();
@@ -178,6 +177,45 @@ function printNewsletters(){
         Configuration::dbDisconnect($con);
 }
 
+
+function printCategories(){
+     $con = Configuration::dbConnect();
+        $result = mysqli_query($con, "SELECT "
+                                    . " category.id AS id,  "
+                                    . " category.name AS name, "
+                                    . " category.state AS state "
+                                    . " FROM category "
+                                    . " ORDER BY name ASC "
+                ) or die(mysqli_error($con));
+        echo '<div class="table-responsive">'
+             . '<table class="table">'
+             . '<thead><tr>'
+             . '<th>ID</th><th>NAME</th><th>FUNCTIONS</th><th>STATE</th><th>SUBSCRIBERS</th>'
+             . '<tr></thead>'
+             ;
+        while ($category = $result->fetch_object()) {
+             echo '<tr>'
+                . '<td>'
+                . $category->id
+                . '</td><td><span>'
+                . $category->name
+                . '</span></td><td>'
+                . '<a href="?view=edit-category&id=' 
+                     . $category->id 
+                     . '"><span>' 
+                     . 'EDIT'
+                     . '</span></a>'
+                . '</td><td>'
+                . Configuration::$BOOL_VISUAL[$category->state]
+                . '</td><td>'
+                . getSubscribersCount($category->id)
+                . '</td></tr>'; 
+        }
+        echo '</table></div>';
+        Configuration::dbDisconnect($con);
+}
+
+
 function getSentCount($id, $state){
     if($state != 2)
         return '-';
@@ -234,6 +272,27 @@ function printNewsletterForm(){
     
 }
 
+function printCategoryForm(){
+    if(ISSET($_GET['id'])){
+        if($_GET['id'] > 0){
+            $con = Configuration::dbConnect();
+            $result = mysqli_query($con, "SELECT * "
+                                    . " FROM category "
+                                    . " WHERE id = '$_GET[id]'"
+                ) or die(mysqli_error($con));
+            $category = $result->fetch_object();  
+        }
+    }
+    echo '<div class="col-lg-2">'
+        . '<form action="/lib/posthandler.php" method="POST">'
+        . '<div class="form-group"><label for="name">Name:</label><input type="text" class="form-control" id="name" name="name" value="'
+            . ($category ? $category->name : "") . '"/></div>'
+        . '<input type="hidden" name="categoryId" value="' . $_GET['id'] . '"/>'
+        . '<div class="form-group"><button type="submit" class="btn btn-default" name="edit-category-submit">SAVE</button></div>'
+        . '</div></form></div>'
+    ;
+    
+}
 
 function getCategorySelection($id){
     $selection = '';
@@ -250,8 +309,15 @@ function getCategorySelection($id){
     Configuration::dbDisconnect($con); 
     return $selection;
 }
+
 function printAddNewNewsletterButton(){
     echo '<a href="?view=edit-newsletter&id=0">'
+        . 'ADD NEW'
+        . '</a>';
+}
+
+function printAddNewCategoryButton(){
+    echo '<a href="?view=edit-category&id=0">'
         . 'ADD NEW'
         . '</a>';
 }
@@ -307,8 +373,30 @@ function sendNewsletters($id){
 }
 
 function sendEmail($email, $subject, $body){
-    //SEND EMAIL
-    return true;
+    $mail = new PHPMailer;
+    setMailReady($mail);
+    $mail->addAddress($email);
+    $mail->Subject = $subject;
+    $mail->Body = $body;
+    if(!$mail->send()){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function setMailReady($mail){
+    $mail->CharSet = "UTF-8";
+    $mail->isSMTP();
+    $mail->Host = Configuration::$MAIL_HOST;
+    $mail->SMTPAuth = true;
+    $mail->Username = Configuration::$MAIL_USERNAME;
+    $mail->Password = Configuration::$MAIL_PASSWORD;
+    $mail->SMTPSecure = Configuration::$MAIL_ENCRYPTION;
+    $mail->Port = Configuration::$MAIL_PORT;
+    $mail->isHTML(true);
+    $mail->setFrom(Configuration::$MAIL_ADDRESS_FROM, 'PHPMailer');
+    $mail->addReplyTo(Configuration::$MAIL_ADDRESS_FROM);
 }
 
 function markDelivery($id){

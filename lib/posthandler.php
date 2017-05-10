@@ -20,6 +20,9 @@ if(isset($_POST['subscribe'])){
         if(addSubscription($_POST['email'], $_POST['category'])){
             header('Location: ../index.php?msg=successful-subscription');
         }
+        else{
+            header('Location: ../index.php?msg=failed-subscribtion'); 
+        }
     }
 }
 
@@ -49,6 +52,25 @@ if(isset($_POST['edit-newsletter-submit'])){
             header('Location: ../adminsite.php?view=newsletters&msg=success-inserting-newsletter');
         }else{
            echo '<script type="text/javascript">alert("KLAIDA !"); history.go(-1)</script>';
+        }
+    }
+}
+
+if(isset($_POST['edit-category-submit'])){
+    $category = new Category(array('name' => $_POST['name']));
+    if($_POST['categoryId'] > 0){
+        if($category->updateInDB($_POST['categoryId'])){
+            header('Location: ../adminsite.php?view=categories&msg=success-updating-category');
+        }else{
+            //echo '<script type="text/javascript">alert("KLAIDA !"); history.go(-1)</script>';
+        }
+        
+    }
+    if($_POST['categoryId'] == 0){
+        if($category->AddToDB()){
+            header('Location: ../adminsite.php?view=categories&msg=success-inserting-category');
+        }else{
+           //echo '<script type="text/javascript">alert("KLAIDA !"); history.go(-1)</script>';
         }
     }
 }

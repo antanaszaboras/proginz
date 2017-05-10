@@ -61,10 +61,27 @@ if(!(checkLoginState()))
         </div>
         <?php
     break;
+    case "categories":
+        ?>
+        <div class="row content">
+            <?php printAddNewCategoryButton(); ?>
+        </div>
+        <div class="row content">
+            <?php printCategories(); ?>
+        </div>
+        <?php
+    break;
     case "edit-newsletter":
         ?>
         <div class="row content">
             <?php printNewsletterForm(); ?>
+        </div>
+        <?php
+    break;
+    case "edit-category":
+        ?>
+        <div class="row content">
+            <?php printCategoryForm(); ?>
         </div>
         <?php
     break;

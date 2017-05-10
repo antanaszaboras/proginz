@@ -7,6 +7,7 @@ session_start();
  * and open the template in the editor.
  */
 require_once 'lib/functions.php';
+
 spl_autoload_register(function ($class_name) {
     require_once 'lib/' . $class_name . '.class.php';
 });

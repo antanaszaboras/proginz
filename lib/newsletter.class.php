@@ -29,7 +29,6 @@ class Newsletter {
         $this->body = '';
         if($params != NULL){
             foreach ($params as $key => $value){
-                print_r($key . ' - ' . $value . '\n');
                 $this->$key = $value;
             }
         }

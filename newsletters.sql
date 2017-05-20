@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2017 at 08:30 PM
+-- Generation Time: May 20, 2017 at 10:30 AM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -41,6 +41,55 @@ INSERT INTO `category` (`id`, `state`, `name`) VALUES
 (6, 1, 'Kategorija Bfffffffffff'),
 (7, 1, 'Kategorija C'),
 (8, 1, 'PROJEKTAS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `confirmation_link`
+--
+
+CREATE TABLE `confirmation_link` (
+  `id` int(11) NOT NULL,
+  `is_used` int(11) NOT NULL,
+  `secret` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `date_sent` datetime NOT NULL,
+  `date_used` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `confirmation_link`
+--
+
+INSERT INTO `confirmation_link` (`id`, `is_used`, `secret`, `email`, `date_sent`, `date_used`) VALUES
+(1, 0, 'cq376X5FEW', 'antzab@ktu.edu', '2017-05-18 18:13:46', NULL),
+(2, 0, 'RxxZBiwxov', 'antanas.zaboras@gmail.com', '2017-05-18 18:18:21', NULL),
+(3, 0, 'sQTke4EmOD', 'antanas.zaboras@gmail.com', '2017-05-18 18:22:19', NULL),
+(4, 0, 'x6FDJpLGZB', 'antanas.zaboras@gmail.com', '2017-05-18 18:24:42', NULL),
+(5, 1, 'bTNgy5DW0q', 'antanas.zaboras@gmail.com', '2017-05-18 19:11:20', '2017-05-18 20:24:30'),
+(6, 0, 's3NW6hytJq', 'antanas.zaboras@gmail.com', '2017-05-18 20:26:40', NULL),
+(7, 0, 'FLucrXLiBn', 'antanas.zaboras@gmail.com', '2017-05-18 20:26:42', NULL),
+(8, 1, 'QKFbUvNqe0', 'antanas.zaboras@gmail.com', '2017-05-19 17:47:48', '2017-05-19 17:48:28'),
+(9, 1, 'JtvIZhr0Gq', 'antanas.zaboras@gmail.com', '2017-05-19 18:48:48', '2017-05-19 18:54:18'),
+(10, 0, 'Rymtz26Uax', 'antanas.zaboras@gmail.com', '2017-05-19 22:56:58', NULL),
+(11, 1, 'Nbj7d7boEx', 'antanas.zaboras@gmail.com', '2017-05-19 23:02:26', '2017-05-19 23:03:22'),
+(12, 1, 'gtxjz20aEp', 'antanas.zaboras@gmail.com', '2017-05-19 23:03:55', '2017-05-19 23:11:41'),
+(13, 0, 'XcUvc80vVu', 'asd@as', '2017-05-19 23:23:27', NULL),
+(14, 1, 'LdFmvGhKzQ', 'antanas.zaboras@gmail.com', '2017-05-19 23:24:07', '2017-05-19 23:24:20'),
+(15, 1, 'VkUjvkcKqz', 'antanas.zaboras@gmail.com', '2017-05-19 23:25:55', '2017-05-19 23:26:13'),
+(16, 0, 'hi2ijDoWG4', 'antanas.zaboras@gmail.com', '2017-05-20 10:21:06', NULL),
+(17, 1, 'x0pbc3tbxw', 'antanas.zaboras@gmail.com', '2017-05-20 10:21:08', '2017-05-20 10:21:51'),
+(18, 1, '2j6VLeg3qX', 'antanas.zaboras@gmail.com', '2017-05-20 10:22:03', '2017-05-20 10:40:59'),
+(19, 1, 'CKCzJsZLz8', 'antanas.zaboras@gmail.com', '2017-05-20 10:50:15', '2017-05-20 10:55:03'),
+(20, 0, 'HfIS7kgGQq', 'antanas.zaboras@gmail.com', '2017-05-20 10:55:12', NULL),
+(21, 1, 'LIpNuSh6Wb', 'antanas.zaboras@gmail.com', '2017-05-20 11:40:50', '2017-05-20 11:47:21'),
+(22, 0, 'cCQhJ3iBn3', 'antanas.zaboras@gmail.com', '2017-05-20 11:50:29', NULL),
+(23, 1, 'uKB4N2QMGG', 'antanas.zaboras@gmail.com', '2017-05-20 11:50:55', '2017-05-20 11:51:19'),
+(24, 1, 'tFM0K9lfSW', 'antanas.zaboras@gmail.com', '2017-05-20 11:52:03', '2017-05-20 11:52:19'),
+(25, 0, '75lNr9f6gl', 'antanas.zaboras@gmail.com', '2017-05-20 11:52:29', NULL),
+(26, 1, '7IazEdDEYO', 'antanas.zaboras@gmail.com', '2017-05-20 12:25:29', '2017-05-20 12:25:46'),
+(27, 0, 'CESFTtbQtq', 'antanas.zaboras@gmail.com', '2017-05-20 12:25:31', NULL),
+(28, 1, 'hwLcy7R1BX', 'antanas.zaboras@gmail.com', '2017-05-20 12:25:57', '2017-05-20 12:26:13');
 
 -- --------------------------------------------------------
 
@@ -141,7 +190,8 @@ INSERT INTO `delivery` (`id`, `is_sent`, `date_added`, `date_sent`, `subscriber`
 (77, 1, '2017-05-10 20:25:48', '2017-05-10 20:25:50', 6, 19),
 (78, 1, '2017-05-10 20:28:20', '2017-05-10 20:28:21', 6, 19),
 (79, 1, '2017-05-10 20:28:56', '2017-05-10 20:28:58', 6, 19),
-(80, 1, '2017-05-10 20:29:49', '2017-05-10 20:29:50', 6, 19);
+(80, 1, '2017-05-10 20:29:49', '2017-05-10 20:29:50', 6, 19),
+(81, 1, '2017-05-20 12:10:45', '2017-05-20 12:10:47', 6, 20);
 
 -- --------------------------------------------------------
 
@@ -182,7 +232,9 @@ INSERT INTO `newsletter` (`id`, `state`, `name`, `date`, `category`, `descriptio
 (16, 3, 'aasd', '2017-04-23', 6, 'sadas', 'VISKAS GERAI KAS '),
 (17, 2, '1asasdasd', '2017-05-08', 6, 'Pirmas', 'Pirmas'),
 (18, 3, 'xusfsafan', '2017-05-08', 5, 'aaa', 'bbb'),
-(19, 2, 'dvi savaitÄ—s', '2017-05-10', 8, 'Liko 2 savaitÄ—s iki projekto pabaigos', 'Liko dvi savaitÄ—s iki projekto pabaigos. Padaryti testus, dokumentacijÄ…, dizainÄ…, klaidÅ³ tvarkymÄ…. ');
+(19, 2, 'dvi savaitÄ—s', '2017-05-10', 8, 'Liko 2 savaitÄ—s iki projekto pabaigos', 'Liko dvi savaitÄ—s iki projekto pabaigos. Padaryti testus, dokumentacijÄ…, dizainÄ…, klaidÅ³ tvarkymÄ…. '),
+(20, 2, 'Lipsum 1', '2017-05-20', 8, 'Your Lipsum is ready', 'Parturient donec per torquent egestas a tellus viverra vel a pulvinar praesent interdum class id arcu. Condimentum ultricies mi in et in congue donec suscipit in sagittis pulvinar etiam pretium integer erat condimentum morbi vel aenean nam parturient eget posuere mi adipiscing ridiculus cum. Suspendisse aenean lacus ullamcorper ut id quisque lobortis ante conubia viverra tempor vulputate dolor in habitant a integer placerat himenaeos elementum massa lacus leo vitae nulla. Ut porttitor platea ut arcu orci amet ad ullamcorper pharetra ornare nisl scelerisque luctus proin rutrum integer et parturient suspendisse tellus mollis nisl a orci a tincidunt dictumst. Eros hendrerit vestibulum proin duis hac facilisis vivamus interdum vestibulum nascetur sit scelerisque a adipiscing. \r\n'),
+(21, 3, 'Vestibulum', '2017-05-20', 5, 'Vestibulum nam a morbi iaculis', 'Parturient donec per torquent egestas a tellus viverra vel a pulvinar praesent interdum class id arcu. Condimentum ultricies mi in et in congue donec suscipit in sagittis pulvinar etiam pretium integer erat condimentum morbi vel aenean nam parturient eget posuere mi adipiscing ridiculus cum. Suspendisse aenean lacus ullamcorper ut id quisque lobortis ante conubia viverra tempor vulputate dolor in habitant a integer placerat himenaeos elementum massa lacus leo vitae nulla. Ut porttitor platea ut arcu orci amet ad ullamcorper pharetra ornare nisl scelerisque luctus proin rutrum integer et parturient suspendisse tellus mollis nisl a orci a tincidunt dictumst. Eros hendrerit vestibulum proin duis hac facilisis vivamus interdum vestibulum nascetur sit scelerisque a adipiscing. \r\n\r\nVenenatis eu orci vulputate ullamcorper est augue imperdiet consectetur hendrerit varius tellus urna ut dolor venenatis et. Netus non ac nunc rutrum fermentum et suspendisse tellus adipiscing sodales bibendum montes urna non consectetur ultricies lacinia. Morbi ut semper condimentum id a primis ut condimentum urna eu tellus a vestibulum senectus et a eros a blandit condimentum at commodo cubilia nam. Adipiscing posuere a in a euismod augue vestibulum nulla a non at condimentum magna posuere a nisl condimentum sem scelerisque erat orci parturient mi. Ullamcorper ut vestibulum aliquam vivamus dis a a imperdiet ut mi eu vitae scelerisque per montes cras donec fusce. Hendrerit dictumst arcu a aliquet eu elementum parturient hendrerit ante eu convallis id condimentum placerat potenti lacus nisi litora imperdiet parturient adipiscing lacus quisque curabitur vulputate dis venenatis. \r\n');
 
 -- --------------------------------------------------------
 
@@ -193,20 +245,18 @@ INSERT INTO `newsletter` (`id`, `state`, `name`, `date`, `category`, `descriptio
 CREATE TABLE `subscriber` (
   `id` int(11) NOT NULL,
   `state` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `date_subscribed` datetime DEFAULT NULL,
+  `date_suspended` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subscriber`
 --
 
-INSERT INTO `subscriber` (`id`, `state`, `email`) VALUES
-(1, 1, 'aA@aa'),
-(2, 1, 'aA@aas'),
-(3, 1, 'aA@aa'),
-(4, 1, 'aA@aaa'),
-(5, 1, 'antzab@ktu.edu'),
-(6, 1, 'antanas.zaboras@gmail.com');
+INSERT INTO `subscriber` (`id`, `state`, `email`, `date_subscribed`, `date_suspended`) VALUES
+(5, 1, 'antzab@ktu.edu', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 0, 'antanas.zaboras@gmail.com', '2017-05-20 10:21:51', '2017-05-20 12:26:13');
 
 -- --------------------------------------------------------
 
@@ -224,11 +274,8 @@ CREATE TABLE `subscriber_category_xref` (
 --
 
 INSERT INTO `subscriber_category_xref` (`subscriber_id`, `category_id`) VALUES
-(1, 5),
-(1, 6),
 (5, 5),
-(5, 6),
-(6, 8);
+(5, 6);
 
 --
 -- Indexes for dumped tables
@@ -238,6 +285,12 @@ INSERT INTO `subscriber_category_xref` (`subscriber_id`, `category_id`) VALUES
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `confirmation_link`
+--
+ALTER TABLE `confirmation_link`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -279,20 +332,25 @@ ALTER TABLE `subscriber_category_xref`
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
+-- AUTO_INCREMENT for table `confirmation_link`
+--
+ALTER TABLE `confirmation_link`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
 -- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 --
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `subscriber`
 --
 ALTER TABLE `subscriber`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --

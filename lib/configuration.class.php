@@ -24,6 +24,22 @@ class Configuration {
     public static $MAIL_PASSWORD = 'CommonPassword';
     public static $MAIL_ENCRYPTION = 'ssl';
     public static $MAIL_PORT = '465';
+    public static $MAIL_FROM= 'NEWS PIGeon';
+    public static $SECRET_SIZE = '10';
+    public static $ALERTS_ARRAY = ['failed-unsubscribe' => '<strong>OOOPS ! </strong> Something gone wrong. Please try again.',
+                                    'successful-subscription' => '<storng>CONGRATULATIONS ! </strong> Your subscription was SUCCESSFUL',
+                                    'unsubscribe-letter' => 'Confirmation email has been sent. Please follow instructions provided.',
+                                    'unsubscribe-succseful' => '<strong> SUCCESS </strong> You have successfuly unsubscribed.',
+                                    'bad-password' => '<strong> OOOPS ! </strong> Bad password provided.',
+                                    'logged-off' => 'Admin session ended.',
+                                    'login-first' => '<strong>OOOPS ! </strong> Please login first...',
+                                    'successful-subscription-email' => 'Confirmation email has been sent. Please follow instructions provided.',
+                                    'failed-subscribtion' => '<strong>OOOPS ! </strong> Something gone wrong. Please try again.',
+                                    'no-categories-selected' => '<strong>OOOPS ! </strong> Please select category to SUBSCRIBE',
+                                    'success-sending-newsletter' => '<strong> SUCCESS ! </strong> Newsletters are set for delivery.',
+                                    'success-inserting-newsletter' => '<strong> SUCCESS ! </strong> Newsletter created' 
+                                ];
+    public static $TIME_ZONE = 'Europe/Vilnius';
     
     static function dbConnect(){
        return mysqli_connect(Configuration::$DB_SERVER, Configuration::$DB_USERNAME, Configuration::$DB_PASSWORD, Configuration::$DB_NAME);

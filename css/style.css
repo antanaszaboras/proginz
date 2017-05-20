@@ -47,3 +47,10 @@ li.button form button.button{
     display: block;
     padding: 10px 15px;
 }
+
+.top10{
+    margin-top: 10px;
+}
+.valign{
+     vertical-align: middle !important;
+}

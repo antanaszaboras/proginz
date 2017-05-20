@@ -4,17 +4,10 @@
  * and open the template in the editor.
  */
 
-function removeGuestFormOverlay(){
-    document.getElementById('signup-form').style.display = "none";
-}
-function removeLoginFormOverlay(){
-    document.getElementById('adminlogin-form').style.display = "none";
+function removeFormOverlay(id){
+    document.getElementById(id).style.display = "none";
 }
 
-function showSignupForm(){
-    document.getElementById('signup-form').style.display = "block";
-}
-
-function showAdminLogin(){
-    document.getElementById('adminlogin-form').style.display = "block";
+function showForm(id){
+    document.getElementById(id).style.display = "block";
 }

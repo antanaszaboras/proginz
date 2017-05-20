@@ -11,7 +11,7 @@ spl_autoload_register(function ($class_name) {
 });
 
 if(!(checkLoginState()))
-    header('Location: index.php?msg=login-first');
+    header('Location: index.php?alert=error&msg=login-first');
 
 ?>
 <!DOCTYPE html>
@@ -29,22 +29,29 @@ if(!(checkLoginState()))
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">NEWSLETTERER</a>
+      <a class="navbar-brand" href="#">NEWS PIGeon</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php?view=newsletter-list">Newsletters</a></li>
-      <li class="nav-divider"></li>
-      <li><a href="?view=categories">Categories</a></li>
+      <li ><a href="?view=categories">Categories</a></li>
       <li><a href="?view=newsletters">Newsletters</a></li>
-      <li><a href="?view=statistics">Statistics</a></li>
-      <li><form action="lib/posthandler.php" method="POST"><button class="button" type="submit" name="logout" ><span>LOGOUT</span></button></li>
+      <li><a href="?view=subscribers">Subscribers</a></li>
+      
     </ul>
+      <ul class="nav navbar-nav navbar-right">
+         <li><a href="lib/posthandler.php?logout=true">LOGOUT</a></li> 
+      </ul>
   </div>
 </nav>
 <div class="container-fluid">
+    <?php if($_GET['msg']){ ?>
+    <div class="alert <?php printAlertType();?> alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <?php printAlertText(); ?>
+    </div>
+    <?php } ?>
     <?php 
     switch ($_GET['view']):
-    case "statistics":
+    case "subscribers":
         ?>
         <div class="row content">
             <?php printSubscribers(); ?>

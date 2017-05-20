@@ -37,7 +37,8 @@ class Configuration {
                                     'failed-subscribtion' => '<strong>OOOPS ! </strong> Something gone wrong. Please try again.',
                                     'no-categories-selected' => '<strong>OOOPS ! </strong> Please select category to SUBSCRIBE',
                                     'success-sending-newsletter' => '<strong> SUCCESS ! </strong> Newsletters are set for delivery.',
-                                    'success-inserting-newsletter' => '<strong> SUCCESS ! </strong> Newsletter created' 
+                                    'success-inserting-newsletter' => '<strong> SUCCESS ! </strong> Newsletter created',
+                                    'success-updating-category' => '<strong> SUCCESS ! </strong> Category updated. ' 
                                 ];
     public static $TIME_ZONE = 'Europe/Vilnius';
     

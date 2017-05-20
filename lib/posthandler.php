@@ -5,14 +5,14 @@ session_start();
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+/*
 foreach ($_POST as $key => $value){
     echo $key . ' - ' . $value . ' <br/>';
 }
-
+*/
 require_once '../lib/functions.php';
 spl_autoload_register(function ($class_name) {
-    require_once '../lib/' . $class_name . '.class.php';
+    require_once '../lib/' . strtolower($class_name) . '.class.php';
 });
 
 if(isset($_POST['subscribe-step1'])){

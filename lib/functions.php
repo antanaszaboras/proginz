@@ -71,7 +71,8 @@ function categoryChekboxOptions($secret, $type){
                 . 'value="' . $category->id . '"';
             switch($type){
                 case 'subscribe':
-                    if(in_array($category->id, $subscribedCategories)) echo ' CHECKED DISABLED ';
+                    if($subscribedCategories != NULL)
+                        if(in_array($category->id, $subscribedCategories)) echo ' CHECKED DISABLED ';
                 break;
                 case 'unsubscribe':
                    if(!(in_array($category->id, $subscribedCategories))) echo ' DISABLED '; 
@@ -382,7 +383,7 @@ function printCategories(){
                 . '</span></td><td>'
                 . '<a href="?view=edit-category&id=' 
                      . $category->id 
-                     . '"><span>' 
+                     . '" class="btn btn-warning" role="button"><span>' 
                      . 'EDIT'
                      . '</span></a>'
                 . '</td><td>'
